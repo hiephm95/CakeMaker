@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="MyTheme.Base">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/shared_element_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/shared_element_return</item>
+    </style>
+    <style name="EditText" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">18dp</item>
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+
+    </style>
+</resources>
