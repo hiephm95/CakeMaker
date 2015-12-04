@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
     RelativeLayout rlLeftDrawer;
     DrawerLayout dlLayout;
     ImageView vActionLeft;
+    Toolbar toolbar;
 
     ActionBarDrawerToggle mDrawerToggle;
 
@@ -124,16 +126,9 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
 
         setActions();
 
-        hideStatusBar();
     }
 
 
-
-    public void hideStatusBar() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
 
     public void startActivityProduct() {
         FragmentManager fragmentManager = getFragmentManager();
@@ -150,6 +145,7 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
         rlLeftDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
         dlLayout = (DrawerLayout) findViewById(R.id.layout_drawer);
         vActionLeft = (ImageView) findViewById(R.id.actionLeft);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
     }
 
@@ -255,20 +251,5 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        View decorView = getWindow().getDecorView();
-        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-
-    }
 }
