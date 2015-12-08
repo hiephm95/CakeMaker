@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.com.projectcakemaker.fragment.LoginFragment;
+import android.com.projectcakemaker.model.Event;
+import android.com.projectcakemaker.model.Product;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,11 +26,17 @@ public class MainActivity extends AppCompatActivity {
     private void initParse()
     {
         Parse.enableLocalDatastore(this);
+        ParseObject.registerSubclass(Product.class);
+        ParseObject.registerSubclass(Event.class);
         Parse.initialize(this, "l5OJy4F4rw3COKG6Jgc0VKNi7rFQzarUVLcjw4jA", "HCRpx0LQxTlvaBXDQ6BxeFsLnJqkGscA9xf1aq8Q");
+        initSubclass();
+    }
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+    private void initSubclass()
+    {
+        Product product = new Product();
+        Event event = new Event();
+        Product productReference  = ParseObject.createWithoutData(Product.class, product.getObjectId());
     }
 
 
