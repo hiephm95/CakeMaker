@@ -12,9 +12,21 @@ public class Product extends ParseObject{
     }
 
     //Id
-    public int getId()
+    public String getId()
     {
-        return  getInt("objectId");
+        return  getObjectId();
+    }
+
+
+    //name
+    public String getName()
+    {
+        return getString("name");
+    }
+
+    public void setName(String value)
+    {
+        put("name", value);
     }
 
     //itemCode
@@ -50,17 +62,6 @@ public class Product extends ParseObject{
         put("egg", value);
     }
 
-    //image
-    public List<String> imageList()
-    {
-        return getList("imageList");
-    }
-
-    public void setImageList(List<String> value)
-    {
-        put("imageList", value);
-    }
-
     //discount
     public Double getDiscount()
     {
@@ -82,4 +83,5 @@ public class Product extends ParseObject{
     {
         put("event", e);
     }
+
 }
