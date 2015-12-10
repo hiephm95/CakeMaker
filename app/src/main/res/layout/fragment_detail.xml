@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="android.com.projectcakemaker.fragment.DetailFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Name Cake"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="@string/detail_cake"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="5"
+                android:background="@drawable/custom_border"
+                android:paddingLeft="5dp"
+                android:paddingTop="16dp"
+                android:text="10.00"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="5"
+                android:background="@drawable/custom_border"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/pink"
+            android:gravity="center"
+            android:text="Place The Order"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/custom_boder_detail"
+            android:gravity="center"
+            android:text="Add To Favorites"
+            android:textColor="@color/grey"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package android.com.projectcakemaker.fragment;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.com.projectcakemaker.R;
 import android.com.projectcakemaker.adapter.RecyclerViewAdapter;
 import android.com.projectcakemaker.interfaces.ScreenChangeListener;
@@ -65,7 +66,9 @@ public class WeddingCakeFragment extends Fragment {
                 new RecyclerViewAdapter.MyClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Log.i(LOG_TAG, " Clicked on Item " + position);
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        DetailFragment detailFragment = new DetailFragment();
+                        transaction.replace(R.id.main_product, detailFragment).commit();
                     }
                 });
     }

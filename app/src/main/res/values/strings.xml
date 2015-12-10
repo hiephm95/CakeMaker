@@ -8,8 +8,9 @@
     <string name="sign_in">Sign In</string>
     <string name="skip">Touch to visit</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main_product">MainProductActivity</string>
+    <string name="detail_cake">Mini cupcakes and small specialty flavored cupcakes need to be pre-ordered and in increments of a dozen. Please call our bakery or stop in today to place your custom order!</string>
 
 </resources>

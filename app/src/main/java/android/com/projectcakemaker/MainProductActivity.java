@@ -126,9 +126,15 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
 
         setActions();
 
+        hidingStatusBar();
+
     }
 
-
+    public void hidingStatusBar() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
 
     public void startActivityProduct() {
         FragmentManager fragmentManager = getFragmentManager();
@@ -251,5 +257,15 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        hidingStatusBar();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hidingStatusBar();
+    }
 }

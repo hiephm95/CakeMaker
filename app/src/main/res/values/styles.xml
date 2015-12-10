@@ -4,7 +4,7 @@
     <style name="MyTheme" parent="MyTheme.Base">
     </style>
     <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
     </style>
 
 </resources>

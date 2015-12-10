@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initParse();
         initProject();
+        hidingStatusBar();
     }
 
-    private void initParse()
-    {
+    private void initParse() {
         Parse.enableLocalDatastore(this);
         ParseObject.registerSubclass(Product.class);
         ParseObject.registerSubclass(Event.class);
@@ -32,15 +32,14 @@ public class MainActivity extends AppCompatActivity {
         initSubclass();
     }
 
-    private void initSubclass()
-    {
+    private void initSubclass() {
         Product product = new Product();
         Event event = new Event();
-        Product productReference  = ParseObject.createWithoutData(Product.class, product.getObjectId());
+        Product productReference = ParseObject.createWithoutData(Product.class, product.getObjectId());
     }
 
 
-    private void initProject(){
+    private void initProject() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         LoginFragment loginFragment = new LoginFragment();
@@ -48,20 +47,24 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    public void hidingStatusBar() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        View decorView = getWindow().getDecorView();
-        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+
+        hidingStatusBar();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        View decorView = getWindow().getDecorView();
-        int uiOptions  = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+        hidingStatusBar();
 
     }
 
