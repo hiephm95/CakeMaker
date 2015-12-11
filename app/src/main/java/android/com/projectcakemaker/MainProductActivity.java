@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SharedElementCallback;
 import android.com.projectcakemaker.adapter.MenuAdapter;
+import android.com.projectcakemaker.fragment.DetailFragment;
 import android.com.projectcakemaker.fragment.EventFragment;
 import android.com.projectcakemaker.fragment.HomeFragment;
 import android.com.projectcakemaker.fragment.ProductFragment;
@@ -224,18 +225,15 @@ public class MainProductActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        //Fragment currentFragment = getFragmentManager().findFragmentById(R.id.main_product);
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.main_product);
 
         switch (v.getId()) {
-//            case R.id.actionLeft:
-//                if (currentFragment instanceof DetailsFragment) {
-//                    getFragmentManager().popBackStack();
-//                } else {
-//                    dlLayout.openDrawer(rlLeftDrawer);
-//                }
-//                break;
             case R.id.actionLeft:
-                dlLayout.openDrawer(rlLeftDrawer);
+                if (currentFragment instanceof DetailFragment) {
+                    getFragmentManager().popBackStack();
+                } else {
+                    dlLayout.openDrawer(rlLeftDrawer);
+                }
                 break;
         }
     }

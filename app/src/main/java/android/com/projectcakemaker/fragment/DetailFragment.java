@@ -1,13 +1,17 @@
 package android.com.projectcakemaker.fragment;
 
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.com.projectcakemaker.interfaces.ScreenChangeListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.com.projectcakemaker.R;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,14 +23,31 @@ public class DetailFragment extends Fragment {
         // Required empty public constructor
     }
     View root;
+    ScreenChangeListener screenChangeListener;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         if (root == null) {
             root = inflater.inflate(R.layout.fragment_detail, container, false);
+
+
         }
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        screenChangeListener.setTitleMenu("Detail");
+        screenChangeListener.setIconActionLeft(R.mipmap.ic_arrow_back);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        screenChangeListener = (ScreenChangeListener) activity;
+    }
 }

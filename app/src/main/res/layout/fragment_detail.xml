@@ -46,9 +46,10 @@
                 android:layout_height="55dp"
                 android:layout_weight="5"
                 android:background="@drawable/custom_border"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="16dp"
-                android:text="10.00"
+                android:textColor="@color/pink"
+                android:text="10.00$"
                 android:textSize="18dp" />
 
             <Spinner

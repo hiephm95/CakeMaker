@@ -68,6 +68,7 @@ public class WeddingCakeFragment extends Fragment {
                     public void onItemClick(View view, int position) {
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         DetailFragment detailFragment = new DetailFragment();
+                        transaction.addToBackStack(null);
                         transaction.replace(R.id.main_product, detailFragment).commit();
                     }
                 });

@@ -52,11 +52,11 @@ public class MenuAdapter extends BaseAdapter {
         vh.ivIcon.setImageResource(screen.icon_res);
 
         if (screen.is_selected) {
-            convertView.setBackgroundColor(parent.getContext().getResources().getColor(R.color.white));
+            convertView.setBackgroundColor(parent.getContext().getResources().getColor(R.color.black2));
             vh.tvMenu.setTextColor(parent.getContext().getResources().getColor(R.color.pink));
         } else {
-            convertView.setBackgroundColor(parent.getContext().getResources().getColor(R.color.white));
-            vh.tvMenu.setTextColor(parent.getContext().getResources().getColor(R.color.black));
+            convertView.setBackgroundColor(parent.getContext().getResources().getColor(R.color.black2));
+            vh.tvMenu.setTextColor(parent.getContext().getResources().getColor(R.color.white));
         }
         return convertView;
     }
