@@ -7,6 +7,8 @@ import android.com.projectcakemaker.R;
 import android.com.projectcakemaker.adapter.RecyclerViewAdapter;
 import android.com.projectcakemaker.interfaces.ScreenChangeListener;
 import android.com.projectcakemaker.model.Cake;
+import android.com.projectcakemaker.parse.MyTask;
+import android.com.projectcakemaker.parse.ProductManager;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.FrameLayout;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -29,7 +32,6 @@ public class WeddingCakeFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private static String LOG_TAG = "RecyclerViewActivity";
     View root;
-    ArrayList<Cake> list = new ArrayList<>();
     ScreenChangeListener screenChangeListener;
 
     @Override
@@ -44,14 +46,15 @@ public class WeddingCakeFragment extends Fragment {
             //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
             mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             mRecyclerView.setHasFixedSize(true);
-            list.add(new Cake("AAA", 1));
-            list.add(new Cake("AAA", 2));
-            list.add(new Cake("AAA", 3));
-            list.add(new Cake("AAA", 4));
-            list.add(new Cake("AAA", 5));
-            list.add(new Cake("AAA", 6));
-            list.add(new Cake("AAA", 7));
-            mAdapter = new RecyclerViewAdapter(list);
+
+            MyTask task = new MyTask();
+            try {
+                mAdapter = new RecyclerViewAdapter(task.execute().get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
             mRecyclerView.setAdapter(mAdapter);
 
 

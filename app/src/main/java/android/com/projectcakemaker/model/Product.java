@@ -3,12 +3,16 @@ package android.com.projectcakemaker.model;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.ParseRelation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ParseClassName("Product")
 public class Product extends ParseObject{
+    private List<Event> eventList;
     public Product() {
+        eventList = new ArrayList<>();
     }
 
     //Id
@@ -17,6 +21,16 @@ public class Product extends ParseObject{
         return  getObjectId();
     }
 
+    //description
+    public String getDescription()
+    {
+        return getString("description");
+    }
+
+    public void setDescription(String value)
+    {
+        put("description", value);
+    }
 
     //name
     public String getName()
@@ -74,14 +88,35 @@ public class Product extends ParseObject{
     }
 
     //Event
-    public ParseObject getEvent()
+    public ParseRelation<Event> getEventRelation()
     {
-        return getParseObject("event");
+        return getRelation("events");
     }
 
-    public void setEvent(Event e)
+    public void setEventRelation(Event e)
     {
-        put("event", e);
+        getEventRelation().add(e);
+    }
+
+    public void setEventList(List<Event> list)
+    {
+        eventList = list;
+    }
+
+    public List<Event> getEventList()
+    {
+        return eventList;
+    }
+
+    //Picture
+    public ParseRelation<Picture> getPicture()
+    {
+        return getRelation("pictures");
+    }
+
+    public void setPicture(Picture p)
+    {
+        getPicture().add(p);
     }
 
 }

@@ -6,11 +6,14 @@ import android.com.projectcakemaker.fragment.LoginFragment;
 import android.com.projectcakemaker.model.Event;
 import android.com.projectcakemaker.model.Picture;
 import android.com.projectcakemaker.model.Product;
+import android.com.projectcakemaker.parse.ProductManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.Parse;
@@ -21,8 +24,12 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    ProductManager pm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         initParse();
         initProject();
         hidingStatusBar();
+        pm = new ProductManager();
+        pm.getProduct();
+        Log.d("List Size is:", "" + pm.listProduct.size());
     }
 
     private void initParse() {
@@ -66,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         ParseFile parseFile2 = new ParseFile("cake_logo.png", data2);
         picture2.setFile(parseFile2);
 
-        event.setId("1C");
         event.setName("Christmass");
         product.setItemCode("C2AP");
         product.setName("Fuck Cake");

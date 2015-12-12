@@ -9,17 +9,6 @@ public class Picture extends ParseObject {
     public Picture() {
     }
 
-//    //Id
-//    public String getId()
-//    {
-//        return getString("itemCode");
-//    }
-//
-//    public void setId(String value)
-//    {
-//        put("itemCode", value);
-//    }
-
     //Name
     public String getPictureDescription()
     {

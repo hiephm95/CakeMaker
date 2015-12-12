@@ -9,16 +9,6 @@ public class Event extends ParseObject {
     public Event() {
     }
 
-    //id
-    public String getId() {
-        return getString("eventId");
-    }
-
-    public void setId(String value)
-    {
-        put("eventId", value);
-    }
-
     //name
     public String getName() {
         return getString("name");
