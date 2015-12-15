@@ -6,9 +6,8 @@ import android.app.FragmentTransaction;
 import android.com.projectcakemaker.R;
 import android.com.projectcakemaker.adapter.RecyclerViewAdapter;
 import android.com.projectcakemaker.interfaces.ScreenChangeListener;
-import android.com.projectcakemaker.model.Cake;
-import android.com.projectcakemaker.parse.MyTask;
-import android.com.projectcakemaker.parse.ProductManager;
+import android.com.projectcakemaker.model.Picture;
+import android.com.projectcakemaker.model.Product;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,15 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WeddingCakeFragment extends Fragment {
+public class WeddingCakeFragment extends Fragment implements FindCallback<Product> {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -47,15 +47,7 @@ public class WeddingCakeFragment extends Fragment {
             mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             mRecyclerView.setHasFixedSize(true);
 
-            MyTask task = new MyTask();
-            try {
-                mAdapter = new RecyclerViewAdapter(task.execute().get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            mRecyclerView.setAdapter(mAdapter);
+            Product.getListProduct(this);
 
 
         }
@@ -65,6 +57,35 @@ public class WeddingCakeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+    }
+
+    @Override
+    public void done(List<Product> objects, ParseException e) {
+        if (e == null) {
+            for (final Product p : objects) {
+                try {
+                    p.setPictureList(p.getPictureRelation().getQuery().find());
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+//                p.getPictureRelation().getQuery().findInBackground(new FindCallback<Picture>() {
+//                    @Override
+//                    public void done(List<Picture> objects, ParseException e) {
+//                        p.setPictureList(objects);
+//                        Log.d("URL:", p.getPicturesList().get(0).getFile().getUrl());
+//                    }
+//                });
+            }
+            mAdapter = new RecyclerViewAdapter(objects);
+            mRecyclerView.setAdapter(mAdapter);
+            setOnItemClick();
+        } else {
+            Log.d("Error:", e.toString());
+        }
+    }
+
+    private void setOnItemClick() {
         ((RecyclerViewAdapter) mAdapter).setOnItemClickListener(
                 new RecyclerViewAdapter.MyClickListener() {
                     @Override

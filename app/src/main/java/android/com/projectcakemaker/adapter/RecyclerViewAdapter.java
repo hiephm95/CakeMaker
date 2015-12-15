@@ -1,15 +1,16 @@
 package android.com.projectcakemaker.adapter;
 
 import android.com.projectcakemaker.R;
-import android.com.projectcakemaker.model.Cake;
 import android.com.projectcakemaker.model.Product;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.List;
 
 
@@ -24,7 +25,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_gridview, parent, false);
-
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -33,6 +33,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.tvName.setText(Data.get(position).getName());
         holder.tvPrice.setText(String.valueOf(Data.get(position).getPrice()));
+
+        ImageLoader.getInstance().displayImage(Data.get(position).getPicturesList().get(0).getFile().getUrl(), holder.ivProduct);
     }
 
     @Override
@@ -44,11 +46,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView tvName;
         TextView tvPrice;
+        ImageView ivProduct;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            ivProduct = (ImageView) itemView.findViewById(R.id.ivProduct);
             itemView.setOnClickListener(this);
         }
 
