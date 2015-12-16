@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.com.projectcakemaker.R;
+import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -22,6 +23,7 @@ public class DetailFragment extends Fragment {
     public DetailFragment() {
         // Required empty public constructor
     }
+    Button btnNextOrder;
     View root;
     ScreenChangeListener screenChangeListener;
 
@@ -30,11 +32,22 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (root == null) {
             root = inflater.inflate(R.layout.fragment_detail, container, false);
-
+            btnNextOrder = (Button) root.findViewById(R.id.btnNextOrder);
+            btnNextOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.main_frame, new OrderFragment());
+                    transaction.commit();
+                }
+            });
 
         }
         return root;
     }
+
+    
 
     @Override
     public void onResume() {
@@ -50,4 +63,5 @@ public class DetailFragment extends Fragment {
 
         screenChangeListener = (ScreenChangeListener) activity;
     }
+
 }
